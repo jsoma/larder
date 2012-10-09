@@ -1,0 +1,34 @@
+sites:
+  -
+    use: true
+    name: Food Network
+    domain: http://www.foodnetwork.com
+    search_path: '/search/delegate.do?fnSearchString=%s&fnSearchType=recipe'
+    search_selectors:
+      result_link: .result-item h3 a
+      next_page: .pagi .nextprev:contains('N')
+    uses_microdata: true
+
+  -
+    use: true
+    name: Allrecipes
+    domain: http://www.allrecipes.com
+    search_path: '/search/default.aspx?qt=k&wt=%s&rt=r&origin=Recipe'
+    search_selectors:
+      result_link: h3.resultTitle a
+      next_page: .page_navigation_nav a:contains('N')
+    uses_microdata: true
+    recipe_selectors:
+      instructions: '.directions ol li'
+
+  - 
+    use: false
+    name: Chow
+    domain: http://www.chow.com
+    search_path: '/search?query=salad&type=Recipe'
+    search_selectors:
+      result_link: '#results_list li > a'
+      next_page: .paginator_next
+    uses_microdata: true
+    recipe_selectors:
+      ingredients: '#ingredients li'
